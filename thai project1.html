@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapir & Ptaya thailand trip 2024</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        #map { height: 80vh; width: 100%; }
+        .photo-link {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+        .photo-link a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4285F4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .close-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snapir & Ptaya Thailnd Trip 2024 </h1>
+    <div id="map"></div>
+    <div id="photo-link" class="photo-link">
+        <h2 id="location-name"></h2>
+        <p>Click the button below to view photos from this location:</p>
+        <a id="photos-link" href="#" target="_blank">View Photos</a>
+        <br>
+        <button class="close-button" onclick="closePhotoLink()">Close</button>
+    </div>
+
+    <script>
+        // Initialize the map centered on Thailand
+        var map = L.map('map').setView([15.8700, 100.9925], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Specified points of interest in Thailand with Google Photos links
+        var locations = [
+            { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink:"https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6"},
+            { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "#" },
+            { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "#" },
+            { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "#" },
+            { name: "Phuket", latlng: [7.8804, 98.3923], photoLink: "#" },
+            { name: "Khao Sok", latlng: [8.9137, 98.5292], photoLink: "#" },
+            { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "#" }
+        ];
+
+        // Add markers to the map
+        locations.forEach(function(loc) {
+            L.marker(loc.latlng).addTo(map)
+                .bindPopup(loc.name)
+                .on('click', function() {
+                    showPhotoLink(loc.name, loc.photoLink);
+                });
+        });
+
+        function showPhotoLink(locationName, photoLink) {
+            document.getElementById('location-name').textContent = locationName;
+            document.getElementById('photos-link').href = photoLink;
+            document.getElementById('photo-link').style.display = 'block';
+        }
+
+        function closePhotoLink() {
+            document.getElementById('photo-link').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
