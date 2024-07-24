@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapir & Ptaya thailand trip 2024</title>
+    <title>Snapir & Ptaya Thailand Trip 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        body {
+            background-color: #f0f8ff; /* Change this to your desired background color */
+        }
+        h1 {
+            font-family: 'Pacifico', cursive; /* Change this to your desired font style */
+            color: #2c3e50; /* Change this to your desired font color */
+            text-align: center;
+        }
         #map { height: 80vh; width: 100%; }
         .photo-link {
             position: fixed;
@@ -40,10 +48,103 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* Slideshow styles */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            text-align: center;
+        }
+
+        .slides img {
+            width: 3cm;
+            height: 3cm;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
     </style>
 </head>
 <body>
-    <h1>Snapir & Ptaya Thailnd Trip 2024 </h1>
+    <h1>Snapir & Ptaya Thailand Trip 2024</h1>
+
+    <div class="slideshow-container">
+        <div class="slides fade">
+            <img src="img/image1.jpg" alt="Image 1">
+        </div>
+        <div class="slides fade">
+            <img src="img/image2.jpg" alt="Image 2">
+        </div>
+        <div class="slides fade">
+            <img src="img/image3.jpg" alt="Image 3">
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
     <div id="map"></div>
     <div id="photo-link" class="photo-link">
         <h2 id="location-name"></h2>
@@ -54,13 +155,44 @@
     </div>
 
     <script>
+        // Slideshow functionality
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("slides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        function plusSlides(n) {
+            slideIndex += n - 1;
+            showSlides();
+        }
+
+        function currentSlide(n) {
+            slideIndex = n - 1;
+            showSlides();
+        }
+
         // Initialize the map centered on Thailand
         var map = L.map('map').setView([15.8700, 100.9925], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         // Specified points of interest in Thailand with Google Photos links
         var locations = [
-            { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink:"https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6"},
+            { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink: "https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6" },
             { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "#" },
             { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "#" },
             { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "#" },
