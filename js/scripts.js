@@ -1,93 +1,90 @@
-body {
-    background-color: #f0f8ff;
-    font-family: Arial, sans-serif;
-}
-h1 {
-    font-family: 'Pacifico', cursive;
-    color: #2c3e50;
-    text-align: center;
-}
-.map-container {
-    width: 50%; /* Thinner width */
-    height: 80vh; /* Taller height */
-    margin: 0 auto; /* Center the container */
-}
-#map {
-    height: 100%; /* Full height within the container */
-    width: 100%; /* Full width within the container */
-}
-.hamburger-menu {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-    z-index: 1001;
-}
-.hamburger-menu div {
-    width: 30px;
-    height: 3px;
-    background-color: #333;
-    margin: 5px 0;
-}
-.menu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-    z-index: 1000;
-    padding-top: 60px;
-}
-.menu a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-}
-.menu a:hover {
-    background-color: #f1f1f1;
-}
-/* Slideshow styles */
-.slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
-    text-align: center;
-}
-.slides img {
-    width: 3cm;
-    height: 3cm;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.fade {
-    animation-name: fade;
-    animation-duration: 2s;
-}
-@keyframes fade {
-    from {opacity: 0.4}
-    to {opacity: 1}
-}
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-.active, .dot:hover {
-    background-color: #717171;
-}
-/* Footer styles */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #2c3e50;
-    color: white;
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Load header and footer
+    document.getElementById('header').innerHTML = `
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">מי אנחנו</a>
+            <a href="our-trip.html">רקע על הטיול שלנו</a>
+            <a href="visited-places.html">המקומות שביקרנו</a>
+        </div>
+    `;
+    document.getElementById('footer').innerHTML = `
+        <footer>
+            <p>&copy; 2024 Snapir & Ptaya</p>
+        </footer>
+    `;
+
+    // Toggle menu
+    window.toggleMenu = function() {
+        var menu = document.getElementById('menu');
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'block';
+        }
+    };
+
+    // Slideshow functionality
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("slides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    window.currentSlide = function(n) {
+        slideIndex = n;
+        showSlides();
+    };
+
+    // Initialize the map centered on Thailand
+    var map = L.map('map').setView([15.8700, 100.9925], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Specified points of interest in Thailand with Google Photos links
+    var locations = [
+        { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink: "https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6" },
+        { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "https://photos.app.goo.gl/hJWk9JG7STZ5hMoj9" },
+        { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "#" },
+        { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "#" },
+        { name: "Phuket", latlng: [7.8804, 98.3923], photoLink: "#" },
+        { name: "Khao Sok", latlng: [8.9137, 98.5292], photoLink: "#" },
+        { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "#" }
+    ];
+
+    // Create a LatLng bounds object
+    var bounds = new L.LatLngBounds(locations.map(loc => loc.latlng));
+
+    // Add markers to the map
+    locations.forEach(function(loc) {
+        L.marker(loc.latlng).addTo(map)
+            .bindTooltip(loc.name, {permanent: true, direction: 'top'})
+            .bindPopup('<a href="' + loc.photoLink + '" target="_blank">' + loc.name + '</a>')
+            .openTooltip();
+    });
+
+    // Fit the map to the bounds
+    map.fitBounds(bounds);
+
+    window.closePhotoLink = function() {
+        document.getElementById('photo-link').style.display = 'none';
+    };
+});
