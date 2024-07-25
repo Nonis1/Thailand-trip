@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "#" }
     ];
 
+    // Create a LatLng bounds object
+    var bounds = new L.LatLngBounds(locations.map(loc => loc.latlng));
+
     // Add markers to the map
     locations.forEach(function(loc) {
         L.marker(loc.latlng).addTo(map)
@@ -77,6 +80,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .bindPopup('<a href="' + loc.photoLink + '" target="_blank">' + loc.name + '</a>')
             .openTooltip();
     });
+
+    // Fit the map to the bounds
+    map.fitBounds(bounds);
 
     window.closePhotoLink = function() {
         document.getElementById('photo-link').style.display = 'none';
