@@ -9,7 +9,7 @@ h1 {
 }
 .map-container {
     width: 75%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the container */
+    margin: 1 auto; /* Center the container */
 }
 #map {
     height: 80vh; /* Adjust the height as needed */
