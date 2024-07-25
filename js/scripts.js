@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
 
-    function currentSlide(n) {
+    window.currentSlide = function(n) {
         slideIndex = n;
         showSlides();
-    }
+    };
 
     // Initialize the map centered on Thailand
     var map = L.map('map').setView([15.8700, 100.9925], 6);
@@ -77,12 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .bindPopup('<a href="' + loc.photoLink + '" target="_blank">' + loc.name + '</a>')
             .openTooltip();
     });
-
-    function showPhotoLink(locationName, photoLink) {
-        document.getElementById('location-name').textContent = locationName;
-        document.getElementById('photos-link').href = photoLink;
-        document.getElementById('photo-link').style.display = 'block';
-    }
 
     window.closePhotoLink = function() {
         document.getElementById('photo-link').style.display = 'none';
