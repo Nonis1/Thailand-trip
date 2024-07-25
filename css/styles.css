@@ -8,11 +8,12 @@ h1 {
     text-align: center;
 }
 .map-container {
-    width: 75%; /* Adjust the width as needed */
-    margin: 1 auto; /* Center the container */
+    width: 50%; /* Adjust the width as needed */
+    height: 80vh; /* Increase the height for better visibility */
+    margin: 0 auto; /* Center the container */
 }
 #map {
-    height: 80vh; /* Adjust the height as needed */
+    height: 100%; /* Full height within the container */
     width: 100%; /* Full width within the container */
 }
 .hamburger-menu {
