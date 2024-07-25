@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var locations = [
         { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink: "https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6" },
         { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "https://photos.app.goo.gl/hJWk9JG7STZ5hMoj9" },
-        { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "#" },
+        { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "https://photos.app.goo.gl/4cAgHUNqfJcLtZin9" },
         { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "#" },
         { name: "Phuket", latlng: [7.8804, 98.3923], photoLink: "#" },
         { name: "Khao Sok", latlng: [8.9137, 98.5292], photoLink: "#" },
