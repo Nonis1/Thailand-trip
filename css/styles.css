@@ -7,6 +7,7 @@ h1 {
     color: #2c3e50;
     text-align: center;
 }
+#map { height: 80vh; width: 100%; } /* Ensure the map div is styled correctly */
 .hamburger-menu {
     position: absolute;
     top: 20px;
