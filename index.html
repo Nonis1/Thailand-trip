@@ -6,8 +6,8 @@
     <title>Snapir & Ptaya Thailand Trip 2024</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
     <script src="js/scripts.js" defer></script>
 </head>
 <body>
@@ -34,7 +34,11 @@
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
-    <div id="map"></div>
+    <!-- Map Container -->
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
     <div id="photo-link" class="photo-link">
         <h2 id="location-name"></h2>
         <p>Click the button below to view photos from this location:</p>
