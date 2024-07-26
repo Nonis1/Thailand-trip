@@ -7,10 +7,19 @@ h1 {
     color: #2c3e50;
     text-align: center;
 }
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.calendar-container {
+    width: 25%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+}
 .map-container {
-    width: 50%; /* Thinner width */
-    height: 80vh; /* Taller height */
-    margin: 0 auto; /* Center the container */
+    width: 75%;
+    height: 80vh; /* Adjust the height for better visibility */
 }
 #map {
     height: 100%; /* Full height within the container */
@@ -22,12 +31,7 @@ h1 {
     margin: 20px auto; /* Center the container */
     text-align: center;
 }
-.calendar {
-    width: 100%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-}
+
 .hamburger-menu {
     position: absolute;
     top: 20px;
