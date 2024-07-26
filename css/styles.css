@@ -26,12 +26,6 @@ h1 {
     width: 100%; /* Full width within the container */
 }
 
-.calendar-container {
-    width: 75%;
-    margin: 20px auto; /* Center the container */
-    text-align: center;
-}
-
 .hamburger-menu {
     position: absolute;
     top: 20px;
