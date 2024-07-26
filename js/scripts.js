@@ -84,6 +84,60 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fit the map to the bounds
     map.fitBounds(bounds);
 
+        // Define the flight route from Bangkok to Chiang Mai
+    var flightRoute = [
+        [13.7563, 100.5018], // Bangkok
+        [18.7883, 98.9853]   // Chiang Mai
+    ];
+
+    // Define the driving route from Chiang Mai to Pai
+    var drivingRoute = [
+        [18.7883, 98.9853], // Chiang Mai
+        [19.3582, 98.4404]  // Pai
+    ];
+
+    // Add flight route to the map
+    var flightPolyline = L.polyline(flightRoute, { color: 'blue', dashArray: '5, 10' }).addTo(map);
+
+    // Add driving route to the map
+    var drivingPolyline = L.polyline(drivingRoute, { color: 'green' }).addTo(map);
+
+    // Hide the polylines initially
+    flightPolyline.setStyle({ opacity: 0 });
+    drivingPolyline.setStyle({ opacity: 0 });
+
+    // Define the trip data
+    var trips = {
+        "2/7/24": { type: "flight", polyline: flightPolyline, message: "Flight from Bangkok to Chiang Mai (2/7/24)" },
+        "5/7/24": { type: "drive", polyline: drivingPolyline, message: "Drive from Chiang Mai to Pai (5/7/24)" }
+    };
+
+    // Generate the calendar
+    var calendarHtml = "<h2>Trip Calendar</h2><ul>";
+    for (var date in trips) {
+        calendarHtml += `<li class="calendar-day" data-date="${date}">${date}</li>`;
+    }
+    calendarHtml += "</ul>";
+    document.getElementById('calendar').innerHTML = calendarHtml;
+
+    // Add click event listener to calendar days
+    document.querySelectorAll('.calendar-day').forEach(function(day) {
+        day.addEventListener('click', function() {
+            var date = this.getAttribute('data-date');
+            var trip = trips[date];
+
+            // Hide all polylines
+            flightPolyline.setStyle({ opacity: 0 });
+            drivingPolyline.setStyle({ opacity: 0 });
+
+            // Show the selected polyline
+            trip.polyline.setStyle({ opacity: 1 });
+
+            // Display the trip message
+            alert(trip.message);
+        });
+    });
+
     window.closePhotoLink = function() {
         document.getElementById('photo-link').style.display = 'none';
     };
