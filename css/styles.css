@@ -17,11 +17,16 @@ h1 {
     width: 100%; /* Full width within the container */
 }
 
+.calendar-container {
+    width: 75%;
+    margin: 20px auto; /* Center the container */
+    text-align: center;
+}
 .calendar {
-    width: 25%;
+    width: 100%;
     padding: 20px;
     background-color: #f9f9f9;
-    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
 }
 .hamburger-menu {
     position: absolute;
