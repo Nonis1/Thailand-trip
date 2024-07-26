@@ -16,6 +16,13 @@ h1 {
     height: 100%; /* Full height within the container */
     width: 100%; /* Full width within the container */
 }
+
+.calendar {
+    width: 25%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+}
 .hamburger-menu {
     position: absolute;
     top: 20px;
