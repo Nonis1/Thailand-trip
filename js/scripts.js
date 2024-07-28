@@ -64,10 +64,10 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink: "https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6" },
         { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "https://photos.app.goo.gl/hJWk9JG7STZ5hMoj9" },
         { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "https://photos.app.goo.gl/4cAgHUNqfJcLtZin9" },
-        { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "#" },
+        { name: "Krabi", latlng: [8.0863, 98.9063], photoLink: "https://photos.app.goo.gl/yEX6ujG5R7EftJFv7" },
         { name: "Phuket", latlng: [7.8804, 98.3923], photoLink: "#" },
-        { name: "Khao Sok", latlng: [8.9137, 98.5292], photoLink: "#" },
-        { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "#" }
+        { name: "Khao Sok", latlng: [8.9137, 98.5292], photoLink: "https://photos.app.goo.gl/g9PB9N3oudswfBQA8" },
+        { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "https://photos.app.goo.gl/imnJoEDKKbvvvrMZ9" }
     ];
 
     // Create a LatLng bounds object
