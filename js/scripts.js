@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Define the trip data
     var trips = {
-        "2/7/24": { type: "flight", polyline: flightPolyline, message: "Flight from Bangkok to Chiang Mai (2/7/24)" },
+       "2/7/24": { type: "flight", polyline: flightPolyline, message: "Flight from Bangkok to Chiang Mai (2/7/24)", description: "Flight from Bangkok to Chiang Mai" },
         "5/7/24": { type: "drive", polyline: drivingPolyline, message: "Drive from Chiang Mai to Pai (5/7/24)" }
     };
 
