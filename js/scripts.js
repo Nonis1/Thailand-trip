@@ -1,66 +1,41 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Load header and footer
-    document.getElementById('header').innerHTML = `
-        <div class="hamburger-menu" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="menu" id="menu">
-            <a href="index.html">Home</a>
-            <a href="about.html">מי אנחנו</a>
-            <a href="our-trip.html">רקע על הטיול שלנו</a>
-            <a href="visited-places.html">המקומות שביקרנו</a>
-        </div>
-    `;
-    document.getElementById('footer').innerHTML = `
-        <footer>
-            <p>&copy; 2024 Snapir & Ptaya</p>
-        </footer>
-    `;
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
 
-    // Toggle menu
-    window.toggleMenu = function() {
-        var menu = document.getElementById('menu');
-        if (menu.style.display === 'block') {
-            menu.style.display = 'none';
-        } else {
-            menu.style.display = 'block';
-        }
-    };
+    hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
 
     // Slideshow functionality
-    var slideIndex = 0;
+    let slideIndex = 0;
     showSlides();
 
     function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("slides");
-        var dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
+        const slides = document.getElementsByClassName("slides");
+        const dots = document.getElementsByClassName("dot");
+        
+        for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
+        
         slideIndex++;
         if (slideIndex > slides.length) {slideIndex = 1}
-        for (i = 0; i < dots.length; i++) {
+        
+        for (let i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
+        
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
-        setTimeout(showSlides, 2000); // Change image every 2 seconds
+        setTimeout(showSlides, 5000); // Change image every 5 seconds
     }
 
-    window.currentSlide = function(n) {
-        slideIndex = n;
-        showSlides();
-    };
-
-    // Initialize the map centered on Thailand
-    var map = L.map('map').setView([15.8700, 100.9925], 6);
+    // Map functionality
+    const map = L.map('map').setView([15.8700, 100.9925], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    // Specified points of interest in Thailand with Google Photos links
-    var locations = [
+    const locations = [
         { name: "Bangkok", latlng: [13.7563, 100.5018], photoLink: "https://photos.app.goo.gl/pQNBQ9dDv7sFL7kp6" },
         { name: "Chiang Mai", latlng: [18.7883, 98.9853], photoLink: "https://photos.app.goo.gl/hJWk9JG7STZ5hMoj9" },
         { name: "Pai", latlng: [19.3582, 98.4404], photoLink: "https://photos.app.goo.gl/4cAgHUNqfJcLtZin9" },
@@ -70,75 +45,77 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Koh Phangan", latlng: [9.7348, 100.0208], photoLink: "https://photos.app.goo.gl/imnJoEDKKbvvvrMZ9" }
     ];
 
-    // Create a LatLng bounds object
-    var bounds = new L.LatLngBounds(locations.map(loc => loc.latlng));
+    const bounds = new L.LatLngBounds(locations.map(loc => loc.latlng));
 
-    // Add markers to the map
     locations.forEach(function(loc) {
         L.marker(loc.latlng).addTo(map)
             .bindTooltip(loc.name, {permanent: true, direction: 'top'})
-            .bindPopup('<a href="' + loc.photoLink + '" target="_blank">' + loc.name + '</a>')
+            .bindPopup(`<a href="${loc.photoLink}" target="_blank">${loc.name}</a>`)
             .openTooltip();
     });
 
-    // Fit the map to the bounds
     map.fitBounds(bounds);
 
-        // Define the flight route from Bangkok to Chiang Mai
-    var flightRoute = [
+    // Route functionality
+    const flightRoute = L.polyline([
         [13.7563, 100.5018], // Bangkok
         [18.7883, 98.9853]   // Chiang Mai
-    ];
+    ], { color: 'blue', dashArray: '5, 10', opacity: 0 }).addTo(map);
 
-    // Define the driving route from Chiang Mai to Pai
-    var drivingRoute = [
+    const drivingRoute = L.polyline([
         [18.7883, 98.9853], // Chiang Mai
         [19.3582, 98.4404]  // Pai
-    ];
+    ], { color: 'green', opacity: 0 }).addTo(map);
 
-    // Add flight route to the map
-    var flightPolyline = L.polyline(flightRoute, { color: 'blue', dashArray: '5, 10' }).addTo(map);
-
-    // Add driving route to the map
-    var drivingPolyline = L.polyline(drivingRoute, { color: 'green' }).addTo(map);
-
-    // Hide the polylines initially
-    flightPolyline.setStyle({ opacity: 0 });
-    drivingPolyline.setStyle({ opacity: 0 });
-
-    // Define the trip data
-    var trips = {
-       "2/7/24": { type: "flight", polyline: flightPolyline, message: "Flight from Bangkok to Chiang Mai (2/7/24)", description: "Flight from Bangkok to Chiang Mai" },
-        "5/7/24": { type: "drive", polyline: drivingPolyline, message: "Drive from Chiang Mai to Pai (5/7/24)" }
+    // Trip data
+    const trips = {
+        "2/7/24": { type: "flight", polyline: flightRoute, message: "Flight from Bangkok to Chiang Mai" },
+        "5/7/24": { type: "drive", polyline: drivingRoute, message: "Drive from Chiang Mai to Pai" }
     };
 
-    // Generate the calendar
-    var calendarHtml = "<h2>Trip Calendar</h2><ul>";
-    for (var date in trips) {
+    // Calendar functionality
+    const calendar = document.getElementById('calendar');
+    let calendarHtml = "<h2>Trip Calendar</h2><ul>";
+    
+    for (let date in trips) {
         calendarHtml += `<li class="calendar-day" data-date="${date}">${date}</li>`;
     }
+    
     calendarHtml += "</ul>";
-    document.getElementById('calendar').innerHTML = calendarHtml;
+    calendar.innerHTML = calendarHtml;
 
-    // Add click event listener to calendar days
     document.querySelectorAll('.calendar-day').forEach(function(day) {
         day.addEventListener('click', function() {
-            var date = this.getAttribute('data-date');
-            var trip = trips[date];
+            const date = this.getAttribute('data-date');
+            const trip = trips[date];
 
-            // Hide all polylines
-            flightPolyline.setStyle({ opacity: 0 });
-            drivingPolyline.setStyle({ opacity: 0 });
+            // Reset all routes
+            flightRoute.setStyle({ opacity: 0 });
+            drivingRoute.setStyle({ opacity: 0 });
 
-            // Show the selected polyline
+            // Show selected route
             trip.polyline.setStyle({ opacity: 1 });
 
-            // Display the trip message
+            // Update active state
+            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('active'));
+            this.classList.add('active');
+
+            // Show trip info
             alert(trip.message);
         });
     });
 
-    window.closePhotoLink = function() {
-        document.getElementById('photo-link').style.display = 'none';
-    };
+    // Weather widget (example - you'd need to replace with actual API call)
+    function updateWeather() {
+        const weatherWidget = document.createElement('div');
+        weatherWidget.id = 'weather-widget';
+        weatherWidget.innerHTML = `
+            <h3>Current Weather in Bangkok</h3>
+            <p>Temperature: 32°C</p>
+            <p>Condition: Partly Cloudy</p>
+        `;
+        document.querySelector('.calendar-container').appendChild(weatherWidget);
+    }
+
+    updateWeather();
 });
