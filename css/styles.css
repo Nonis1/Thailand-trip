@@ -190,13 +190,27 @@ footer {
     background-color: #ecf0f1;
     border-radius: 4px;
     transition: background-color 0.3s;
+    white-space: nowrap;  /* Prevents text wrapping */
+    overflow: hidden;     /* Hides overflowing text */
+    text-overflow: ellipsis;  /* Adds ellipsis if text overflows */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;  /* Base font size */
 }
 
-.calendar-day:hover {
-    background-color: #bdc3c7;
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .calendar-day {
+        flex-direction: column; /* Stack date and description */
+        align-items: flex-start; /* Align to the left */
+        white-space: normal; /* Allow wrapping on smaller screens */
+        font-size: 0.9rem; /* Slightly smaller font */
+    }
 }
 
-.calendar-day.active {
-    background-color: #3498db;
-    color: white;
+@media (max-width: 480px) {
+    .calendar-day {
+        font-size: 0.8rem; /* Further reduce font size on very small screens */
+    }
 }
