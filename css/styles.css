@@ -105,10 +105,10 @@ main {
 
 .slides img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-    background-color: #fff; /* Optional */
+    height: auto; /* Maintain aspect ratio based on width */
+    min-height: 100%; /* Ensure the image covers the height */
+    min-width: 100%; /* Ensure the image covers the width */
+    border-radius: 50%; /* Make the image itself circular */
 }
 
 .fade {
