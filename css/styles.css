@@ -83,17 +83,18 @@ main {
 
 /* Slideshow styles */
 .slideshow-container {
-    max-width: 800px;
-    position: relative;
-    margin: 2rem auto;
-    text-align: center;
+    width: 5in;  /* Set width to 5 inches */
+    height: 5in; /* Set height to 5 inches */
+    margin: 0 auto; /* Center the slideshow */
+    overflow: hidden; /* Hide overflow to ensure the round shape */
+    border-radius: 50%; /* Make the container round */
 }
 
 .slides img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire container */
+    border-radius: 50%; /* Make the images round */
 }
 
 .fade {
