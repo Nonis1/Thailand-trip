@@ -81,10 +81,20 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+
+.leaflet-routing-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-routing-alternatives-container {
+    background-color: #f0f8ff;
+}
 /* Slideshow styles */
 .slideshow-container {
-    width: 5in;
-    height: 5in;
+    width: 3in;
+    height: 3in;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 50%;
@@ -105,10 +115,10 @@ main {
 
 .slides img {
     width: 100%;
-    height: auto; /* Maintain aspect ratio based on width */
-    min-height: 100%; /* Ensure the image covers the height */
-    min-width: 100%; /* Ensure the image covers the width */
-    border-radius: 50%; /* Make the image itself circular */
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+    border-radius: 50%;
 }
 
 .fade {
@@ -121,16 +131,7 @@ main {
     to {opacity: 1}
 }
 
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
+
 
 .active, .dot:hover {
     background-color: #717171;
@@ -182,7 +183,6 @@ footer {
     }
 }
 
-/* Calendar styles */
 .calendar-day {
     cursor: pointer;
     padding: 0.5rem;
@@ -190,13 +190,16 @@ footer {
     background-color: #ecf0f1;
     border-radius: 4px;
     transition: background-color 0.3s;
-    white-space: nowrap;  /* Prevents text wrapping */
-    overflow: hidden;     /* Hides overflowing text */
-    text-overflow: ellipsis;  /* Adds ellipsis if text overflows */
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;  /* Base font size */
+}
+
+.trip-info {
+    margin-left: 10px;  /* Add some space between the date and the message */
+    color: #666;
+    font-size: 0.9rem; /* Slightly smaller font for the message */
 }
 
 /* Responsive Design for smaller screens */
@@ -207,10 +210,20 @@ footer {
         white-space: normal; /* Allow wrapping on smaller screens */
         font-size: 0.9rem; /* Slightly smaller font */
     }
+
+    .trip-info {
+        margin-left: 0;
+        margin-top: 5px; /* Add some space above the message */
+    }
 }
 
 @media (max-width: 480px) {
     .calendar-day {
         font-size: 0.8rem; /* Further reduce font size on very small screens */
     }
+
+    .trip-info {
+        font-size: 0.8rem; /* Ensure consistency */
+    }
 }
+
