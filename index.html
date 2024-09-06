@@ -3,120 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapir & Ptaya Thailand Trip 2024</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="js/scripts.js" defer></script>
+    <title>Snapir & Ptaya Trip 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .page {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav a {
+            margin: 5px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 1rem;
+        }
+        .slideshow {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #globeContainer {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 1rem;
+        }
+        .map-container {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin-bottom: 1rem;
+        }
+        .image-belt {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+        }
+        .image-belt img {
+            height: 150px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+            .slideshow, .map-container { height: 300px; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Snapir & Ptaya Thailand Trip 2024</h1>
-        <div class="hamburger-menu">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <nav class="menu">
-            <a href="#home">Home</a>
-           
-           
-            <a href="places.html">המקומות שביקרנו</a>
-        </nav>
-    </header>
+    <nav class="nav">
+        <a href="#intro">Intro</a>
+        <a href="#bangkok">Bangkok</a>
+        <a href="#chiangmai">Chiang Mai</a>
+        <a href="#pai">Pai</a>
+        <a href="#krabi">Krabi</a>
+        <a href="#phuket">Phuket</a>
+        <a href="#khaosok">Khao Sok</a>
+        <a href="#kohphangan">Koh Phangan</a>
+        <a href="#huahin">Hua Hin</a>
+        <a href="#lafkada">Lafkada</a>
+    </nav>
 
-   <div class="slideshow-container">
-        <div class="slides fade">
-            <img src="img/image1.jpg" alt="Image 1">
+    <div id="intro" class="page">
+        <h1>Snapir & Ptaya Trip to Thailand & Greece 2024</h1>
+        <p>Welcome to our amazing journey through Thailand and Greece in 2024!</p>
+        <div class="slideshow">
+            <!-- Trip photos -->
+            <img src="img/image1.jpg" alt="Trip Photo 1">
+            <img src="img/image2.jpg" alt="Trip Photo 2">
+            <img src="img/image3.jpg" alt="Trip Photo 3">
+            <img src="img/image4.jpeg" alt="Trip Photo 4">
+            <img src="img/image5.jpeg" alt="Trip Photo 5">
+            <img src="img/image6.jpeg" alt="Trip Photo 6">
+            <img src="img/image7.jpeg" alt="Trip Photo 7">
+            <img src="img/image8.jpeg" alt="Trip Photo 8">
+            <img src="img/image9.jpeg" alt="Trip Photo 9">
+            <img src="img/image10.jpeg" alt="Trip Photo 10">
+            <img src="img/image11.jpeg" alt="Trip Photo 11">
+            <img src="img/image12.jpeg" alt="Trip Photo 12">
+            <img src="img/image13.jpeg" alt="Trip Photo 13">
+            <img src="img/image14.jpeg" alt="Trip Photo 14">
+            <img src="img/image15.jpeg" alt="Trip Photo 15">
+            <img src="img/image16.jpeg" alt="Trip Photo 16">
+            <img src="img/image17.jpeg" alt="Trip Photo 17">
+            <img src="img/image18.jpeg" alt="Trip Photo 18">
+            <img src="img/image19.jpeg" alt="Trip Photo 19">
+            <img src="img/image20.jpeg" alt="Trip Photo 20">
         </div>
-        <div class="slides fade">
-            <img src="img/image2.jpg" alt="Image 2">
-        </div>
-        <div class="slides fade">
-            <img src="img/image3.jpg" alt="Image 3">
-        </div>
-       <div class="slides fade">
-            <img src="img/image4.jpeg" alt="Image 4">
-        </div>
-       <div class="slides fade">
-            <img src="img/image5.jpeg" alt="Image 5">
-        </div>
-       <div class="slides fade">
-            <img src="img/image6.jpeg" alt="Image 6">
-        </div>
-       <div class="slides fade">
-            <img src="img/image7.jpeg" alt="Image 7">
-        </div>
-       <div class="slides fade">
-            <img src="img/image8.jpeg" alt="Image 8">
-        </div>
-       <div class="slides fade">
-            <img src="img/image9.jpeg" alt="Image 9">
-        </div>
-       <div class="slides fade">
-            <img src="img/image10.jpeg" alt="Image 10">
-        </div>
-       <div class="slides fade">
-            <img src="img/image11.jpeg" alt="Image 11">
-        </div>
-       <div class="slides fade">
-            <img src="img/image12.jpeg" alt="Image 12">
-        </div>
-       <div class="slides fade">
-            <img src="img/image13.jpeg" alt="Image 13">
-        </div>
-       <div class="slides fade">
-            <img src="img/image14.jpeg" alt="Image 14">
-        </div>
-       <div class="slides fade">
-            <img src="img/image15.jpeg" alt="Image 15">
-        </div>
-       <div class="slides fade">
-            <img src="img/image16.jpeg" alt="Image 16">
-        </div>
-       <div class="slides fade">
-            <img src="img/image17.jpeg" alt="Image 17">
-        </div>
-       <div class="slides fade">
-            <img src="img/image18.jpeg" alt="Image 18">
-        </div>
-       <div class="slides fade">
-            <img src="img/image19.jpeg" alt="Image 19">
-        </div>
-       <div class="slides fade">
-            <img src="img/image20.jpeg" alt="Image 20">
-        </div>
-        <!-- Next and previous buttons -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <br>
-    <!-- The dots/circles -->
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span> 
-        <span class="dot" onclick="currentSlide(2)"></span> 
-        <span class="dot" onclick="currentSlide(3)"></span> 
     </div>
 
-
-        <div class="container">
-            <div class="calendar-container">
-                <div id="calendar" class="calendar"></div>
-                <!-- Weather widget will be inserted here by JavaScript -->
-            </div>
-            <div class="map-container">
-                <div id="map"></div>
-            </div>
+    <div id="bangkok" class="page">
+        <h1>Bangkok</h1>
+        <p>Our adventures in the vibrant capital of Thailand.</p>
+        <div class="map-container">
+            <!-- Embedded static map of Thailand with Bangkok centered -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7925994.573656748!2d97.34466043828037!3d15.87003222227347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29edc4a4a3327%3A0x78e0b7b1139fbfc1!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2sus!4v1694006889365!5m2!1sen!2sus" 
+                width="800" 
+                height="400" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-    </main>
+    
+        <!-- Google Photos Album Embed -->
+        <script src="https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js" async></script>
+        <div class="pa-gallery-player-widget" style="width:100%; height:480px; display:none;"
+            data-link="https://photos.google.com/share/AF1QipN9GzyDcRH5cTMyqR2u_aXYaKIV3MwA8DoB_4mA_BAB6JnqiyncnKnDNlBvW9FM9g?key=VnR4U3FwSDlUREFGWE8ta2Q5a25RS09ZMW13VWRR"
+            data-background-color="#ffffff"
+            data-title="Bangkok"
+            data-description="39 new items · Album by Inon Snapir">
+            <object data="https://lh3.googleusercontent.com/pw/AP1GczO2Dyb_6qIJmRpe-ZDg4j9pOy2-cLjTeZTvNuAEE2r9aEZ5ux_YVQjnQLys8fPA2N3UXHXz9prPZCbKs-oYPy2Oq6cwvtxsJ88b_Wg1pxOSevL9hOTd=w1920-h1080"></object>
+            <object data="https://lh3.googleusercontent.com/pw/AP1GczM7feaWMnogy43YtarSeGLxZEHlFaDCWyGH4ZnQW8_iaqvMQNmuzDtDA4Iv-y58THB3OlmCTFBGM3zTWN8ygWLWcLtplz6NihIug4rT3g2SNu7lRNWV=w1920-h1080"></object>
+            <object data="https://lh3.googleusercontent.com/pw/AP1GczN-BT4E9mFo8nzD8_gX8GroQaaFG_8O1EB6y1UI0rfLcV2tB4nkewvlze6Khzn0_h5_nPXRDigj5JdRZ6Qm-ZmzTGiCJJAvj_oyySInXpQeuuF0hzPT=w1920-h1080"></object>
+            <object data="https://lh3.googleusercontent.com/pw/AP1GczMy3zm-f8oYrTiBksTlac58DQ-cd811EH-NNiFWosAEkmp3jVK_SfqWB28m9Jkp6jhuTZUkCxBtlATxDpzhLXYaKjWmLm_UUm145EaCScqMnjhmQ-6q=w1920-h1080"></object>
+            <!-- Add other object elements as needed -->
+        </div>
+    </div>
+    <!-- Repeat similar structure for other locations -->
+    <div id="chiangmai" class="page">
+        <h1>Chiang Mai</h1>
+        <p>טיסה קצרה ונחמדה מבנגקוק ונחתנו בחלק הצפוני המדהים של תאילנד- צאנג מאי</p>
+        <div class="map-container">
+            <!-- Static image of the Pai map -->
+            <img src="img\chang\bkktochang.jpg" alt="Map showing the route from Chiang Mai to Pai" width="800" height="400">
+        </div>
+    </div>
+    <div id="pai" class="page">
+        <h1>Pai</h1>
+        <p>שכרנו רכב ונסענו מצאנג מאי לפאי , נסיעה עם נופים מדהימים ופניות חדות בהרים</p>
+        <div class="map-container">
+            <!-- Static image of the Pai map -->
+            <img src="img/pai/chngtopai.png" alt="Map showing the route from Chiang Mai to Pai" width="800" height="400">
+        </div>
+        <div class="image-belt">
+            <!-- Pai Photos -->
+            <img src="img/pai/20240705_141718.jpg" alt="Pai 2">
+            <img src="img/pai/20240705_142520.jpg" alt="Pai 3">
+            <img src="img/pai/20240705_151431.jpg" alt="Pai 4">
+            <img src="img/pai/20240705_151454.jpg" alt="Pai 5">
+            <img src="img/pai/20240705_151550.jpg" alt="Pai 6">
+            <img src="img/pai/20240705_154922.jpg" alt="Pai 7">
+            <img src="img/pai/20240705_214254.jpg" alt="Pai 8">
+            <img src="img/pai/20240706_120416.jpg" alt="Pai 9">
+            <img src="img/pai/20240706_130309.jpg" alt="Pai 10">
+            <img src="img/pai/20240706_143850.jpg" alt="Pai 11">
+            <img src="img/pai/20240706_152653.jpg" alt="Pai 12">
+            <img src="img/pai/20240706_154151.jpg" alt="Pai 13">
+            <img src="img/pai/20240706_154410.jpg" alt="Pai 14">
+            <img src="img/pai/20240706_154428.jpg" alt="Pai 15">
+            <img src="img/pai/20240706_185035.jpg" alt="Pai 16">
+            <img src="img/pai/20240706_185054.jpg" alt="Pai 17">
+            <img src="img/pai/20240706_193421.jpg" alt="Pai 18">
+            <img src="img/pai/20240708_121017.jpg" alt="Pai 19">
+            <img src="img/pai/20240708_122600.jpg" alt="Pai 20">
+            <img src="img/pai/20240708_123243.jpg" alt="Pai 21">
+            <img src="img/pai/20240708_150547.jpg" alt="Pai 22">
+            <img src="img/pai/20240708_152102.jpg" alt="Pai 23">
+            <img src="img/pai/20240708_152644.jpg" alt="Pai 24">
+            <img src="img/pai/20240708_152659.jpg" alt="Pai 25">
+            <img src="img/pai/20240708_152828.jpg" alt="Pai 26">
+            <img src="img/pai/20240708_153200.jpg" alt="Pai 27">
+            <img src="img/pai/20240708_153531.jpg" alt="Pai 28">
+            <img src="img/pai/20240708_154404.jpg" alt="Pai 29">
+            <img src="img/pai/20240708_160748.jpg" alt="Pai 30">
+            <img src="img/pai/20240708_160817.jpg" alt="Pai 31">
+            <img src="img/pai/20240708_203118.jpg" alt="Pai 32">
+            <img src="img/pai/20240708_203124.jpg" alt="Pai 33">
+            <img src="img/pai/20240708_203137.jpg" alt="Pai 34">
+            <img src="img/pai/20240708_203141.jpg" alt="Pai 35">
+            <img src="img/pai/20240709_091618.jpg" alt="Pai 36">
+            <img src="img/pai/20240709_091626.jpg" alt="Pai 37">
+            <img src="img/pai/20240709_113438.jpg" alt="Pai 38">
+            <img src="img/pai/20240709_113443.jpg" alt="Pai 39">
+            <img src="img/pai/20240709_115059.jpg" alt="Pai 40">
+            <img src="img/pai/20240709_122937.jpg" alt="Pai 41">
+            <img src="img/pai/20240709_123407.jpg" alt="Pai 42">
+            <img src="img/pai/20240709_133923.jpg" alt="Pai 43">
+            <img src="img/pai/20240709_182150.jpg" alt="Pai 44">
+            <img src="img/pai/20240709_183225.jpg" alt="Pai 45">
+            <img src="img/pai/20240709_184955.jpg" alt="Pai 46">
+            <img src="img/pai/20240709_185938.jpg" alt="Pai 47">
+            <img src="img/pai/20240709_192950.jpg" alt="Pai 48">
+            <img src="img/pai/20240709_195854.jpg" alt="Pai 49">
+            <img src="img/pai/20240709_205340.jpg" alt="Pai 50">
+            <img src="img/pai/20240709_210949.jpg" alt="Pai 51">
+            <img src="img/pai/20240709_211002.jpg" alt="Pai 52">
+            <img src="img/pai/20240709_211005.jpg" alt="Pai 53">
+            <img src="img/pai/20240709_214753.jpg" alt="Pai 54">
+            <img src="img/pai/20240710_101514.jpg" alt="Pai 55">
+            <img src="img/pai/20240710_140010.jpg" alt="Pai 56">
+            <img src="img/pai/20240710_140926.jpg" alt="Pai 57">
+            <img src="img/pai/20240710_141215.jpg" alt="Pai 58">
+            <img src="img/pai/20240710_141740.jpg" alt="Pai 59">
+            <img src="img/pai/20240710_142852.jpg" alt="Pai 60">
+            <img src="img/pai/20240710_170457.jpg" alt="Pai 61">
+            <img src="img/pai/PXL_20240706_033507044.jpg" alt="Pai 62">
+            <img src="img/pai/PXL_20240706_055543701.jpg" alt="Pai 63">
+            <img src="img/pai/PXL_20240706_055833861.jpg" alt="Pai 64">
+            <img src="img/pai/PXL_20240706_060200311.jpg" alt="Pai 65">
+            <img src="img/pai/PXL_20240706_085517077.jpg" alt="Pai 66">
+            <img src="img/pai/PXL_20240707_024047663.jpg" alt="Pai 67">
+            <img src="img/pai/PXL_20240707_044109112.jpg" alt="Pai 68">
+            <img src="img/pai/PXL_20240707_051857347.jpg" alt="Pai 69">
+            <img src="img/pai/PXL_20240707_051928063.jpg" alt="Pai 70">
+            <img src="img/pai/PXL_20240707_052201523.jpg" alt="Pai 71">
+            <img src="img/pai/PXL_20240707_052230370.jpg" alt="Pai 72">
+            <img src="img/pai/PXL_20240707_052234275.jpg" alt="Pai 73">
+            <img src="img/pai/PXL_20240707_052252247.jpg" alt="Pai 74">
+            <img src="img/pai/PXL_20240708_074436732.jpg" alt="Pai 75">
+            <img src="img/pai/PXL_20240708_081553275.jpg" alt="Pai 76">
+            <img src="img/pai/PXL_20240708_081604370.jpg" alt="Pai 77">
+            <img src="img/pai/PXL_20240708_081855342.jpg" alt="Pai 78">
+            <img src="img/pai/PXL_20240708_081915694.jpg" alt="Pai 79">
+            <img src="img/pai/PXL_20240708_081917563.jpg" alt="Pai 80">
+            <img src="img/pai/PXL_20240709_043737549.jpg" alt="Pai 81">
+            <img src="img/pai/PXL_20240709_052611052.jpg" alt="Pai 82">
+            <img src="img/pai/PXL_20240709_053829362.jpg" alt="Pai 83">
+            <img src="img/pai/PXL_20240709_123002243.jpg" alt="Pai 84">
+            <img src="img/pai/PXL_20240709_124838464.jpg" alt="Pai 85">
+        </div>
+    </div>
+    <div id="Krabi" class="page">
+        <h1>Krabi</h1>
+        <p>החזרנו את הרכב בצאנג מאי וטסנו ישירות לקראבי, עיר חוף בחלק דרומי מערבי </p>
+        <div class="map-container">
+            <!-- Static image of the Pai map -->
+            <img src="img\krabi\chtokrabi.jpg" alt="Map showing the route from Chiang Mai to Krabi" width="800" height="400">
+        </div>
+    </div>
+    <div id="khao-sok" class="page">
+        <h1>khao-sok</h1>
+        <p>התגעגענו קצת לטבע והחלטנו לבלות יומיים בקהו-סוק,טבע מדהים טבול באגם מטורף בשמורה תאילנדית</p>
+        <div class="map-container">
+            <!-- Static image of the Pai map -->
+            <img src="img\krabi\chtokrabi.jpg" alt="Map showing the route from Krabi to khao-sok" width="800" height="400">
+        </div>
+    </div>
+    <div id="Phuket" class="page">
+        <h1>Phuket</h1>
+        <p>החזרנו את הרכב בצאנג מאי וטסנו ישירות לקראבי, עיר חוף בחלק דרומי מערבי </p>
+        <div class="map-container">
+            <!-- Static image of the Pai map -->
+            <img src="img\krabi\chtokrabi.jpg" alt="Map showing the route from Chiang Mai to Krabi" width="800" height="400">
+        </div>
+    </div>
+    
+    
 
-    <footer>
-        <p>&copy; 2024 Snapir & Ptaya. All rights reserved.</p>
-    </footer>
+    <!-- ... other location pages ... -->
 
-    <script src="JS/scripts.js"></script>
+    <script>
+        // Slideshow functionality
+        function startSlideshow() {
+            const images = document.querySelectorAll('.slideshow img');
+            let currentImage = 0;
+            setInterval(() => {
+                images[currentImage].style.opacity = 0;
+                currentImage = (currentImage + 1) % images.length;
+                images[currentImage].style.opacity = 1;
+            }, 3000);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+           // Globe animation
+           function initGlobe() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, 400);
+            document.getElementById('globeContainer').appendChild(renderer.domElement);
+
+            const geometry = new THREE.SphereGeometry(5, 32, 32);
+            const texture = new THREE.TextureLoader().load('/api/placeholder/1024/512');
+            const material = new THREE.MeshBasicMaterial({ map: texture });
+            const globe = new THREE.Mesh(geometry, material);
+            scene.add(globe);
+
+            camera.position.z = 10;
+
+            // Create flight path
+            const flightCurve = new THREE.CurvePath();
+            const telAviv = new THREE.Vector3(3.4, 3.2, 3);
+            const bangkok = new THREE.Vector3(-1, 1.4, 4.7);
+            const chiangMai = new THREE.Vector3(-1.2, 1.6, 4.6);
+
+            const flightPath = new THREE.QuadraticBezierCurve3(
+                telAviv,
+                new THREE.Vector3(1, 5, 1),
+                bangkok
+            );
+            flightCurve.add(flightPath);
+
+            const roadPath = new THREE.LineCurve3(bangkok, chiangMai);
+            flightCurve.add(roadPath);
+
+            const points = flightCurve.getPoints(100);
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+            const flightLine = new THREE.Line(lineGeometry, lineMaterial);
+            scene.add(flightLine);
+
+            let step = 0;
+            const animate = function () {
+                requestAnimationFrame(animate);
+
+                globe.rotation.y += 0.005;
+
+                if (step < points.length) {
+                    const point = points[step];
+                    const dotGeometry = new THREE.SphereGeometry(0.05, 32, 32);
+                    const dotMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+                    const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+                    dot.position.copy(point);
+                    scene.add(dot);
+                    step++;
+                }
+
+                renderer.render(scene, camera);
+            };
+
+            animate();
+        }
+
+        // Start slideshow when page loads
+        window.onload = startSlideshow;
+    </script>
 </body>
 </html>
